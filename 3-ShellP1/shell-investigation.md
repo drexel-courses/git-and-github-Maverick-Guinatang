@@ -3,49 +3,43 @@
 ## Learning Process
 
 
-**AI Tools Used**: I used ChatGPT 5.2 to research shell fundamentals and clarify concepts. I used DeepSeek to verify behaviors directly in my own terminal using `bash` to test commands and parsing behavior. 
+**AI Tools Used**: I used ChatGPT 5.2 to research shell fundamentals and clarify concepts. I used DeepSeek to verify behaviors directly in my own terminal using `bash` to test commands and parsing behavior.
 
 ### Research Questions:
 
 
-1.) "What is a Unix shell and why do operating systems need them?"
-2.) "What is the difference between a shell and a terminal?"
-3.) "How do shells parse command lines with quotes and spaces?"
-4.) "Why must cd be a built-in command?"
-5.) "What is BusyBox and how does it implement multiple utilities in one binary?"
+1. "What is a Unix shell and why do operating systems need them?"
+2. "How do shells parse comannd line (tokenization, quotes, metacharacters)
+3. "What is Built-in vs external commands (and why cd must be built-in)"
+4. "What are Different shells (bash, zsh, fish) and their design philosophies" 
+5. "What is BusyBox and how does it implement multiple utilities in one binary?"
 
-### Resources Discovered
+### Resources
 
-ChatGPT suggested:
+I conducted research about shell basics through the use of ChatGPT and DeepSeek. I began by asking myself what a Unix shell is and why operating systems require such a component. The process revealed to me that a shell functions as a program which enables users to interact with the kernel through its interface. The kernel requires shells to operate because it provides basic system commands but does not offer users a direct method to access programs.
 
-- Reading the `bash` manual (`man bash`)
-- Testing commands using `type` to determine built-in vs external commands
-- Experimenting with quotes in the shell
-- Looking into Alpine Linux to see BusyBox in practice
+I then investigated the process shells use to interpret user input from command lines through their ability to handle tokens and quotes and metacharacters. ChatGPT explained tokenization and quoting rules, and DeepSeek provided additional examples which supported the explanation about how whitespace and metacharacters get interpreted. Tokenization requires users to divide their input data into commands and their associated arguments by using whitespace until they activate quote or escape functions which change the tokenization process. I verified the behavior through my terminal by executing three commands which displayed the HOME environment variable through echo $HOME and echo '$HOME' and echo "$HOME".
 
-I verified concepts using commands such as:
+Then I asked “What is the difference between built-in and external commands, and why must cd be built-in?”This was the most interesting part of my research. The shell contains built-in commands which run directly from its internal structure but external commands operate as independent programs which execute through the fork and exec system calls. DeepSeek emphasized the process hierarchy explanation, which made it clear that cd must be built-in because changing directories in a child process would not affect the parent shell’s working directory.
 
-```bash
-type cd
-type ls
-echo '$HOME'
-echo "$HOME"
-ls | grep txt
-```
+After that, I researched “What are the differences between bash, zsh, and fish?”The three shells provide different features because bash maintains compatibility and stability while zsh enables users to customize their interface with additional features and fish provides basic functionality with easy-to-use default settings.
+
+I concluded my investigation by asking about BusyBox and its method for combining various utilities into a single executable file. I learned that BusyBox combines many Unix utilities into a single executable and uses the name it is invoked with to determine which internal utility to run.
+
+The discovery which surprised me the most involved the process hierarchy system which determines how shell design choices get made including the reason external programs cannot run cd and similar commands.
+
 
 ### Most Surprising Discovery
 
-The most surprising concept I learned was that `cd` must be a built-in command. If `cd` were an external program, the shell would `fork()` a child process, the child would change directories, and then exit. The parent shell would remain in the original directory. This showed how process hierarchy directly impacts shell design.
-
+The discovery which surprised me the most involved the process hierarchy system which determines how shell design choices get made including the reason external programs cannot run cd and similar commands.
 ---
 
 # 2. Shell Purpose and Design
 
 ## A. What Is a Shell?
 
-A **shell** is a command-line interpreter that provides a user interface to interact with the operating system. It translates human-readable commands into system calls that the kernel understands.
+A shell functions as a command-line interpreter which enables users to perform operating system interactions. The program accepts user input which it translates into commands before it sends these commands to the kernel for execution. The kernel requires shells to function because it lacks a built-in user-friendly interface for direct user interaction. The kernel operates system resources and hardware components and memory and processes but provides users with only basic system commands which should not be accessed directly. The shell solves this problem through its ability to convert human-friendly commands including ls and cd into system calls which the kernel can execute. In the overall OS architecture, the shell runs in user space above the kernel. The shell executes user commands through system calls which direct the kernel to execute the requested system services. The system design features multiple operational levels which help users work efficiently through its protective mechanisms that safeguard important data and maintain separate domains for user applications and core operating system functions.
 
-Without a shell, users would have to write programs or use raw system calls to interact with the OS.
 
 ### OS Architecture Structure
 
@@ -63,17 +57,15 @@ The shell sits between the user and the kernel.
 
 A shell has several core responsibilities:
 
-1. **Command Parsing**  
+1. **Command Parsing**
    Breaking user input into commands and arguments.
 
-2. **Process Creation**  
+2. **Process Creation**
    Using system calls like `fork()` and `exec()` to run programs.
 
-3. **I/O Redirection**  
+3. **I/O Redirection**
    Managing `stdin`, `stdout`, and `stderr`.
 
-4. **Job Control**  
-   Managing background (`&`) and foreground processes.
 
 The shell interacts with the kernel using system calls such as:
 
@@ -83,13 +75,15 @@ The shell interacts with the kernel using system calls such as:
 - `pipe()`
 - `dup2()`
 
+The shell performs system calls to interact with the kernel. The shell requests kernel services after it finishes parsing commands to create new processes and open files and establish pipe connections. The kernel then performs these low-level operations and returns control back to the shell. The shell functions as an intermediary which converts user input commands into specific system requests that the kernel executes.
+
 ---
 
 ## C. Shell vs Terminal
 
-A **terminal** (like GNOME Terminal or iTerm2) is a program that handles text input and output.
+A **terminal** is a program that handles text input and output.
 
-A **shell** (like bash, zsh, or fish) is the program running inside the terminal that interprets commands.
+A **shell** is the program running inside the terminal that interprets commands.
 
 You can run different shells inside the same terminal. The terminal is just the interface; the shell is the interpreter.
 
@@ -377,4 +371,6 @@ BusyBox is ideal for embedded systems. Full GNU utilities are better for desktop
 ---
 
 # Conclusion
+
+The research results showed that a shell serves as an environment which extends beyond basic command entry functionality. The system program functions as a mediator which converts user-input commands into operating system executable system calls. I learned that shells are responsible for parsing input, creating and managing processes, handling input and output redirection, and maintaining shell state. The internal operation of real shells became more understandable to me after I learned about tokenization and quoting rules and metacharacters and built-in versus external commands. The explanation about built-in commands for cd and their necessity helped me understand how process hierarchy affects shell development. The study of bash and zsh and fish shells revealed how different design approaches exist while BusyBox research proved that Unix utilities can become optimized for embedded systems through a single binary solution. The research study delivered vital information which I will apply to determine the best approach for my shell development work.
 
