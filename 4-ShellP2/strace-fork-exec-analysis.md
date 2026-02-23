@@ -1,202 +1,198 @@
-# strace Fork/Exec Analysis – dsh2
+# strace Fork/Exec Analysis – dsh2 (My Actual Run on tux)
 
 ## 1. Learning Process (2 points)
 
-I used ChatGPT to learn how to use `strace` for tracing process creation and execution in Linux.
+I used ChatGPT to learn how to use `strace` to trace fork/exec behavior in my shell implementation.
 
-The prompts I asked:
+Questions I asked:
 
-- What is strace and how is it different from gdb?
-- How do I trace child processes created by fork using strace?
+- How do I use strace to trace fork and exec system calls?
+- Why do I need the -f flag when tracing a shell?
 - Why does strace show execve instead of execvp?
-- How do I filter strace output to only show fork, execve, and wait4?
-- How do I save strace output to a file?
+- How can I tell which process is the parent and which is the child?
 
 What I learned:
 
-- `strace` traces system calls, which are the boundary between user programs and the Linux kernel.
-- `gdb` debugs program logic and variables, while `strace` shows what system calls the program makes.
-- By default, `strace` only traces the main process. The `-f` flag is required to follow child processes created by fork.
-- Even though my program calls `execvp()`, the kernel system call shown by `strace` is `execve()`.
-- The `waitpid()` function appears in `strace` output as `wait4()`.
+- `strace` shows system calls made by a program to the Linux kernel.
+- `gdb` debugs program logic and variables, but `strace` shows actual OS-level behavior.
+- The `-f` flag is required to follow child processes created by `fork()`.
+- Although my code calls `execvp()`, `strace` shows `execve()` because `execvp()` is a wrapper that searches PATH and then calls `execve()`.
+- `waitpid()` appears as `wait4()` in Linux `strace` output.
 
-Initially, I forgot to use the `-f` flag and did not see child process activity. After adding `-f`, I was able to clearly observe the fork/exec behavior of my shell.
+At first I did not see the child process behavior clearly, but once I used `-f`, I could see both the parent and child activity.
 
 ---
 
 ## 2. Basic Fork/Exec Analysis (3 points)
 
-### A. Executing a Simple Command
+### A. Executing a Simple Command (`ls`)
 
 Command used:
 
 ```bash
-strace -f -e trace=fork,execve,wait4 ./dsh
+strace -f -e trace=fork,execve,wait4 -o trace_ls.txt ./dsh
 ```
 
-Inside shell:
+Inside my shell:
 
 ```text
 dsh2> ls
 dsh2> exit
 ```
 
-Relevant `strace` output:
+Relevant output from `trace_ls.txt`:
 
 ```text
-[pid 5000] fork() = 5001
-[pid 5001] execve("/usr/bin/ls", ["ls"], ...) = 0
-[pid 5000] wait4(5001, [{WIFEXITED(s) && WEXITSTATUS(s)==0}], 0, NULL) = 5001
+2802289 execve("./dsh", ["./dsh"], 0x7ffff26cd758 /* 26 vars */) = 0
+2802289 wait4(2802292,  <unfinished ...>
+2802292 execve("/home/gbm26/courses/software/bin/ls", ["ls"], 0x7ffd879f31d8 /* 26 vars */) = -1 ENOENT (No such file or directory)
+2802292 execve("/usr/local/sbin/ls", ["ls"], 0x7ffd879f31d8 /* 26 vars */) = -1 ENOENT (No such file or directory)
+2802292 execve("/usr/local/bin/ls", ["ls"], 0x7ffd879f31d8 /* 26 vars */) = -1 ENOENT (No such file or directory)
+2802292 execve("/usr/sbin/ls", ["ls"], 0x7ffd879f31d8 /* 26 vars */) = -1 ENOENT (No such file or directory)
+2802292 execve("/usr/bin/ls", ["ls"], 0x7ffd879f31d8 /* 26 vars */) = 0
+2802292 +++ exited with 0 +++
+2802289 <... wait4 resumed>[{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 2802292
 ```
 
 Analysis:
 
-- The parent shell process (PID 5000) calls `fork()`.
-- `fork()` returns 5001 to the parent, which is the child’s PID.
-- The child process (PID 5001) calls `execve()` and replaces itself with `/usr/bin/ls`.
-- Although my C code uses `execvp()`, `strace` shows `execve()` because that is the actual system call made by the kernel.
-- The parent then calls `wait4()`, which corresponds to `waitpid()` in my code.
-- The status shows `WEXITSTATUS(s)==0`, meaning the `ls` command exited successfully.
+- The shell process (PID 2802289) starts by executing `./dsh`.
+- The child process that runs `ls` is PID 2802292.
+- The child attempts multiple `execve()` calls while searching through PATH.
+- Each failed attempt returns `ENOENT` (file not found).
+- The successful call is `execve("/usr/bin/ls", ["ls"], ...) = 0`.
+- The parent process calls `wait4(2802292, ...)` and resumes after the child exits.
+- `WEXITSTATUS(s) == 0` confirms that `ls` exited successfully.
 
-This confirms the correct pattern: parent forks → child execs → parent waits.
+This verifies that the parent waits for the child and that the child replaces itself with the `ls` program.
 
 ---
 
-### B. Command Not Found
+### B. Command Not Found (`notacommand`)
 
 Command used:
 
 ```bash
-strace -f -e trace=fork,execve,wait4 ./dsh
+strace -f -e trace=fork,execve,wait4 -o trace_notfound.txt ./dsh
 ```
 
-Inside shell:
+Inside my shell:
 
 ```text
 dsh2> notacommand
 dsh2> exit
 ```
 
-Relevant `strace` output:
+Relevant output from `trace_notfound.txt`:
 
 ```text
-[pid 5100] fork() = 5101
-[pid 5101] execve("notacommand", ["notacommand"], ...) = -1 ENOENT (No such file or directory)
-[pid 5100] wait4(5101, [{WIFEXITED(s) && WEXITSTATUS(s)==1}], 0, NULL) = 5101
+2802300 execve("./dsh", ["./dsh"], 0x7ffc79779fb8 /* 26 vars */) = 0
+2802300 wait4(2802307,  <unfinished ...>
+2802307 execve("/home/gbm26/courses/software/bin/notacommand", ["notacommand"], 0x7ffc2339f308 /* 26 vars */) = -1 ENOENT (No such file or directory)
+2802307 execve("/usr/local/sbin/notacommand", ["notacommand"], 0x7ffc2339f308 /* 26 vars */) = -1 ENOENT (No such file or directory)
+2802307 execve("/usr/local/bin/notacommand", ["notacommand"], 0x7ffc2339f308 /* 26 vars */) = -1 ENOENT (No such file or directory)
+2802307 execve("/usr/sbin/notacommand", ["notacommand"], 0x7ffc2339f308 /* 26 vars */) = -1 ENOENT (No such file or directory)
+2802307 execve("/usr/bin/notacommand", ["notacommand"], 0x7ffc2339f308 /* 26 vars */) = -1 ENOENT (No such file or directory)
+2802307 execve("/sbin/notacommand", ["notacommand"], 0x7ffc2339f308 /* 26 vars */) = -1 ENOENT (No such file or directory)
+2802307 execve("/bin/notacommand", ["notacommand"], 0x7ffc2339f308 /* 26 vars */) = -1 ENOENT (No such file or directory)
+2802307 execve("/usr/games/notacommand", ["notacommand"], 0x7ffc2339f308 /* 26 vars */) = -1 ENOENT (No such file or directory)
+2802307 execve("/usr/local/games/notacommand", ["notacommand"], 0x7ffc2339f308 /* 26 vars */) = -1 ENOENT (No such file or directory)
+2802307 execve("/snap/bin/notacommand", ["notacommand"], 0x7ffc2339f308 /* 26 vars */) = -1 ENOENT (No such file or directory)
+2802307 +++ exited with 1 +++
+2802300 <... wait4 resumed>[{WIFEXITED(s) && WEXITSTATUS(s) == 1}], 0, NULL) = 2802307
 ```
 
 Analysis:
 
-- The parent forks once.
-- The child attempts `execve()` but it fails with `ENOENT`.
-- `ENOENT` means the executable file was not found.
-- Since `execve()` failed, the child exits with a non-zero exit code.
-- The parent still calls `wait4()` and retrieves the exit status.
+- Parent PID is 2802300.
+- Child PID is 2802307.
+- The child attempts to execute `notacommand` in every PATH directory.
+- Every attempt fails with `ENOENT`.
+- Since no executable is found, the child exits with status 1.
+- The parent collects this exit status using `wait4()`.
 
-This verifies that even error cases follow the same fork → exec attempt → wait pattern.
+This confirms correct error handling when a command does not exist.
 
 ---
 
-### C. Command with Arguments
+### C. Command with Arguments (`echo "hello world"`)
 
 Command used:
 
 ```bash
-strace -f -e trace=fork,execve,wait4 ./dsh
+strace -f -e trace=fork,execve,wait4 -o trace_echo.txt ./dsh
 ```
 
-Inside shell:
+Inside my shell:
 
 ```text
 dsh2> echo "hello world"
 dsh2> exit
 ```
 
-Relevant `strace` output:
+Relevant output from `trace_echo.txt`:
 
 ```text
-[pid 5200] fork() = 5201
-[pid 5201] execve("/usr/bin/echo", ["echo", "hello world"], ...) = 0
-[pid 5200] wait4(5201, [{WIFEXITED(s) && WEXITSTATUS(s)==0}], 0, NULL) = 5201
+2802548 execve("./dsh", ["./dsh"], 0x7ffc02b50708 /* 26 vars */) = 0
+2802548 wait4(2802553,  <unfinished ...>
+2802553 execve("/home/gbm26/courses/software/bin/echo", ["echo", "hello world"], 0x7ffefd4c47a8 /* 26 vars */) = -1 ENOENT (No such file or directory)
+2802553 execve("/usr/local/sbin/echo", ["echo", "hello world"], 0x7ffefd4c47a8 /* 26 vars */) = -1 ENOENT (No such file or directory)
+2802553 execve("/usr/local/bin/echo", ["echo", "hello world"], 0x7ffefd4c47a8 /* 26 vars */) = -1 ENOENT (No such file or directory)
+2802553 execve("/usr/sbin/echo", ["echo", "hello world"], 0x7ffefd4c47a8 /* 26 vars */) = -1 ENOENT (No such file or directory)
+2802553 execve("/usr/bin/echo", ["echo", "hello world"], 0x7ffefd4c47a8 /* 26 vars */) = 0
+2802553 +++ exited with 0 +++
+2802548 <... wait4 resumed>[{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 2802553
 ```
 
 Analysis:
 
-- The `execve()` call clearly shows the argument array:
-  - `["echo", "hello world"]`
+- The argument array shown in `execve()` is `["echo", "hello world"]`.
 - This confirms that quoted spaces were preserved as a single argument.
-- It also verifies that `argv` was correctly NULL-terminated.
-- The parent waits normally and receives exit status 0.
+- The successful executable is `/usr/bin/echo`.
+- The child exits with status 0 and the parent waits correctly.
 
 ---
 
 ## 3. PATH Search Investigation (3 points)
 
-To investigate how `execvp()` searches PATH, I ran:
+To observe PATH searching in more detail, I ran:
 
 ```bash
-strace -f -o full_trace.txt ./dsh
+strace -f -o full_trace_ls.txt ./dsh
 ```
 
-Then inside the shell:
-
-```text
-dsh2> ls
-dsh2> exit
-```
-
-After that, I searched the trace file:
+Then:
 
 ```bash
-grep execve full_trace.txt
+grep -n "execve" full_trace_ls.txt | head -n 80
 ```
 
-Observed behavior:
+Output:
 
 ```text
-execve("/usr/local/sbin/ls", ["ls"], ...) = -1 ENOENT
-execve("/usr/local/bin/ls",  ["ls"], ...) = -1 ENOENT
-execve("/usr/sbin/ls",       ["ls"], ...) = -1 ENOENT
-execve("/usr/bin/ls",        ["ls"], ...) = 0
+1:2802581 execve("./dsh", ["./dsh"], 0x7ffd7609ec28 /* 26 vars */) = 0
+74:2802582 execve("/home/gbm26/courses/software/bin/ls", ["ls"], 0x7fffde708e98 /* 26 vars */) = -1 ENOENT (No such file or directory)
+75:2802582 execve("/usr/local/sbin/ls", ["ls"], 0x7fffde708e98 /* 26 vars */) = -1 ENOENT (No such file or directory)
+76:2802582 execve("/usr/local/bin/ls", ["ls"], 0x7fffde708e98 /* 26 vars */) = -1 ENOENT (No such file or directory)
+77:2802582 execve("/usr/sbin/ls", ["ls"], 0x7fffde708e98 /* 26 vars */) = -1 ENOENT (No such file or directory)
+78:2802582 execve("/usr/bin/ls", ["ls"], 0x7fffde708e98 /* 26 vars */) = 0
 ```
 
-Analysis:
-
-- `execvp()` attempts to execute the command in each directory listed in the `PATH` environment variable.
-- For each directory, it calls `execve()`.
-- If the file does not exist in that directory, `execve()` returns `ENOENT`.
-- This continues until one succeeds.
-- In this case, `/usr/bin/ls` was found and executed successfully.
-
-Explanation:
-
-- `PATH` is a colon-separated list of directories.
-- `execvp()` searches each directory in order.
-- This allows users to type `ls` instead of `/usr/bin/ls`.
-- If no directory contains the command, all attempts return `ENOENT` and the execution fails.
+This shows that `execvp()` searches through PATH directories in order until it finds a match. Each failed attempt returns `ENOENT`. The successful execution occurs when `/usr/bin/ls` is found.
 
 ---
 
-## 4. Parent/Child Process Verification (2 points)
+## 4. Parent/Child Verification (2 points)
 
-Using `strace`, I verified the following:
+From the traces:
 
-- `fork()` is called exactly once per external command.
-- The parent receives the child PID from `fork()`.
-- The child calls `execve()` after fork.
-- The parent calls `wait4()` (implementation of `waitpid()`).
-- The parent waits after fork, not before.
-- The child PID matches the PID returned to the parent.
-- Exit codes are correctly retrieved with `WEXITSTATUS`.
+- A child process is created for each external command.
+- The child performs the `execve()` calls.
+- The parent waits using `wait4()`.
+- Exit codes are correctly returned to the parent.
+- Successful commands exit with 0.
+- Failed commands exit with 1.
 
-Overall verification:
+Conclusion:
 
-My implementation correctly follows the Unix process creation model:
-
-1. The shell calls `fork()`.
-2. The child replaces itself with the target program using `execvp()` (shown as `execve()`).
-3. The parent waits using `waitpid()` (shown as `wait4()`).
-4. The exit status is captured correctly.
-5. No unexpected extra forks or missing waits were observed.
-
-This confirms that my fork/exec implementation works correctly at the operating system level.
+Using `strace` confirms that my shell correctly implements the fork/exec/wait model used by Unix systems. Each command runs in a child process, the child replaces itself with the requested program, and the parent synchronizes correctly using `waitpid()`.

@@ -1,0 +1,223 @@
+2802581 execve("./dsh", ["./dsh"], 0x7ffd7609ec28 /* 26 vars */) = 0
+2802581 brk(NULL)                       = 0x5621b83d0000
+2802581 arch_prctl(0x3001 /* ARCH_??? */, 0x7fffde708cc0) = -1 EINVAL (Invalid argument)
+2802581 mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f3400b22000
+2802581 access("/etc/ld.so.preload", R_OK) = -1 ENOENT (No such file or directory)
+2802581 openat(AT_FDCWD, "/home/gbm26/courses/software/lib/glibc-hwcaps/x86-64-v3/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802581 newfstatat(AT_FDCWD, "/home/gbm26/courses/software/lib/glibc-hwcaps/x86-64-v3", 0x7fffde707ee0, 0) = -1 ENOENT (No such file or directory)
+2802581 openat(AT_FDCWD, "/home/gbm26/courses/software/lib/glibc-hwcaps/x86-64-v2/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802581 newfstatat(AT_FDCWD, "/home/gbm26/courses/software/lib/glibc-hwcaps/x86-64-v2", 0x7fffde707ee0, 0) = -1 ENOENT (No such file or directory)
+2802581 openat(AT_FDCWD, "/home/gbm26/courses/software/lib/tls/x86_64/x86_64/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802581 newfstatat(AT_FDCWD, "/home/gbm26/courses/software/lib/tls/x86_64/x86_64", 0x7fffde707ee0, 0) = -1 ENOENT (No such file or directory)
+2802581 openat(AT_FDCWD, "/home/gbm26/courses/software/lib/tls/x86_64/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802581 newfstatat(AT_FDCWD, "/home/gbm26/courses/software/lib/tls/x86_64", 0x7fffde707ee0, 0) = -1 ENOENT (No such file or directory)
+2802581 openat(AT_FDCWD, "/home/gbm26/courses/software/lib/tls/x86_64/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802581 newfstatat(AT_FDCWD, "/home/gbm26/courses/software/lib/tls/x86_64", 0x7fffde707ee0, 0) = -1 ENOENT (No such file or directory)
+2802581 openat(AT_FDCWD, "/home/gbm26/courses/software/lib/tls/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802581 newfstatat(AT_FDCWD, "/home/gbm26/courses/software/lib/tls", 0x7fffde707ee0, 0) = -1 ENOENT (No such file or directory)
+2802581 openat(AT_FDCWD, "/home/gbm26/courses/software/lib/x86_64/x86_64/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802581 newfstatat(AT_FDCWD, "/home/gbm26/courses/software/lib/x86_64/x86_64", 0x7fffde707ee0, 0) = -1 ENOENT (No such file or directory)
+2802581 openat(AT_FDCWD, "/home/gbm26/courses/software/lib/x86_64/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802581 newfstatat(AT_FDCWD, "/home/gbm26/courses/software/lib/x86_64", 0x7fffde707ee0, 0) = -1 ENOENT (No such file or directory)
+2802581 openat(AT_FDCWD, "/home/gbm26/courses/software/lib/x86_64/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802581 newfstatat(AT_FDCWD, "/home/gbm26/courses/software/lib/x86_64", 0x7fffde707ee0, 0) = -1 ENOENT (No such file or directory)
+2802581 openat(AT_FDCWD, "/home/gbm26/courses/software/lib/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802581 newfstatat(AT_FDCWD, "/home/gbm26/courses/software/lib", {st_mode=S_IFDIR|0755, st_size=6, ...}, 0) = 0
+2802581 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v3/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802581 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v2/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802581 openat(AT_FDCWD, "tls/x86_64/x86_64/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802581 openat(AT_FDCWD, "tls/x86_64/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802581 openat(AT_FDCWD, "tls/x86_64/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802581 openat(AT_FDCWD, "tls/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802581 openat(AT_FDCWD, "x86_64/x86_64/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802581 openat(AT_FDCWD, "x86_64/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802581 openat(AT_FDCWD, "x86_64/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802581 openat(AT_FDCWD, "libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802581 openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+2802581 newfstatat(3, "", {st_mode=S_IFREG|0644, st_size=142868, ...}, AT_EMPTY_PATH) = 0
+2802581 mmap(NULL, 142868, PROT_READ, MAP_PRIVATE, 3, 0) = 0x7f3400aff000
+2802581 close(3)                        = 0
+2802581 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+2802581 read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0P\237\2\0\0\0\0\0"..., 832) = 832
+2802581 pread64(3, "\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 784, 64) = 784
+2802581 pread64(3, "\4\0\0\0 \0\0\0\5\0\0\0GNU\0\2\0\0\300\4\0\0\0\3\0\0\0\0\0\0\0"..., 48, 848) = 48
+2802581 pread64(3, "\4\0\0\0\24\0\0\0\3\0\0\0GNU\0\t\\{\241H\256\312\201f\200\221\367\30\4px"..., 68, 896) = 68
+2802581 newfstatat(3, "", {st_mode=S_IFREG|0755, st_size=2220400, ...}, AT_EMPTY_PATH) = 0
+2802581 pread64(3, "\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 784, 64) = 784
+2802581 mmap(NULL, 2264656, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7f34008d6000
+2802581 mprotect(0x7f34008fe000, 2023424, PROT_NONE) = 0
+2802581 mmap(0x7f34008fe000, 1658880, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x28000) = 0x7f34008fe000
+2802581 mmap(0x7f3400a93000, 360448, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1bd000) = 0x7f3400a93000
+2802581 mmap(0x7f3400aec000, 24576, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x215000) = 0x7f3400aec000
+2802581 mmap(0x7f3400af2000, 52816, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x7f3400af2000
+2802581 close(3)                        = 0
+2802581 mmap(NULL, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f34008d3000
+2802581 arch_prctl(ARCH_SET_FS, 0x7f34008d3740) = 0
+2802581 set_tid_address(0x7f34008d3a10) = 2802581
+2802581 set_robust_list(0x7f34008d3a20, 24) = 0
+2802581 rseq(0x7f34008d40e0, 0x20, 0, 0x53053053) = 0
+2802581 mprotect(0x7f3400aec000, 16384, PROT_READ) = 0
+2802581 mprotect(0x56218eca9000, 4096, PROT_READ) = 0
+2802581 mprotect(0x7f3400b5c000, 8192, PROT_READ) = 0
+2802581 prlimit64(0, RLIMIT_STACK, NULL, {rlim_cur=8192*1024, rlim_max=RLIM64_INFINITY}) = 0
+2802581 munmap(0x7f3400aff000, 142868)  = 0
+2802581 getrandom("\x26\xfe\x53\xb3\x65\xfc\x3e\xca", 8, GRND_NONBLOCK) = 8
+2802581 brk(NULL)                       = 0x5621b83d0000
+2802581 brk(0x5621b83f1000)             = 0x5621b83f1000
+2802581 newfstatat(1, "", {st_mode=S_IFCHR|0620, st_rdev=makedev(0x88, 0x7), ...}, AT_EMPTY_PATH) = 0
+2802581 newfstatat(0, "", {st_mode=S_IFCHR|0620, st_rdev=makedev(0x88, 0x7), ...}, AT_EMPTY_PATH) = 0
+2802581 write(1, "dsh2> ", 6)           = 6
+2802581 read(0, "ls\n", 1024)           = 3
+2802581 clone(child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0x7f34008d3a10) = 2802582
+2802581 wait4(2802582,  <unfinished ...>
+2802582 set_robust_list(0x7f34008d3a20, 24) = 0
+2802582 execve("/home/gbm26/courses/software/bin/ls", ["ls"], 0x7fffde708e98 /* 26 vars */) = -1 ENOENT (No such file or directory)
+2802582 execve("/usr/local/sbin/ls", ["ls"], 0x7fffde708e98 /* 26 vars */) = -1 ENOENT (No such file or directory)
+2802582 execve("/usr/local/bin/ls", ["ls"], 0x7fffde708e98 /* 26 vars */) = -1 ENOENT (No such file or directory)
+2802582 execve("/usr/sbin/ls", ["ls"], 0x7fffde708e98 /* 26 vars */) = -1 ENOENT (No such file or directory)
+2802582 execve("/usr/bin/ls", ["ls"], 0x7fffde708e98 /* 26 vars */) = 0
+2802582 brk(NULL)                       = 0x55ae09edd000
+2802582 arch_prctl(0x3001 /* ARCH_??? */, 0x7ffcc9952900) = -1 EINVAL (Invalid argument)
+2802582 mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f4de1bde000
+2802582 access("/etc/ld.so.preload", R_OK) = -1 ENOENT (No such file or directory)
+2802582 openat(AT_FDCWD, "/home/gbm26/courses/software/lib/glibc-hwcaps/x86-64-v3/libselinux.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802582 newfstatat(AT_FDCWD, "/home/gbm26/courses/software/lib/glibc-hwcaps/x86-64-v3", 0x7ffcc9951b20, 0) = -1 ENOENT (No such file or directory)
+2802582 openat(AT_FDCWD, "/home/gbm26/courses/software/lib/glibc-hwcaps/x86-64-v2/libselinux.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802582 newfstatat(AT_FDCWD, "/home/gbm26/courses/software/lib/glibc-hwcaps/x86-64-v2", 0x7ffcc9951b20, 0) = -1 ENOENT (No such file or directory)
+2802582 openat(AT_FDCWD, "/home/gbm26/courses/software/lib/tls/x86_64/x86_64/libselinux.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802582 newfstatat(AT_FDCWD, "/home/gbm26/courses/software/lib/tls/x86_64/x86_64", 0x7ffcc9951b20, 0) = -1 ENOENT (No such file or directory)
+2802582 openat(AT_FDCWD, "/home/gbm26/courses/software/lib/tls/x86_64/libselinux.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802582 newfstatat(AT_FDCWD, "/home/gbm26/courses/software/lib/tls/x86_64", 0x7ffcc9951b20, 0) = -1 ENOENT (No such file or directory)
+2802582 openat(AT_FDCWD, "/home/gbm26/courses/software/lib/tls/x86_64/libselinux.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802582 newfstatat(AT_FDCWD, "/home/gbm26/courses/software/lib/tls/x86_64", 0x7ffcc9951b20, 0) = -1 ENOENT (No such file or directory)
+2802582 openat(AT_FDCWD, "/home/gbm26/courses/software/lib/tls/libselinux.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802582 newfstatat(AT_FDCWD, "/home/gbm26/courses/software/lib/tls", 0x7ffcc9951b20, 0) = -1 ENOENT (No such file or directory)
+2802582 openat(AT_FDCWD, "/home/gbm26/courses/software/lib/x86_64/x86_64/libselinux.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802582 newfstatat(AT_FDCWD, "/home/gbm26/courses/software/lib/x86_64/x86_64", 0x7ffcc9951b20, 0) = -1 ENOENT (No such file or directory)
+2802582 openat(AT_FDCWD, "/home/gbm26/courses/software/lib/x86_64/libselinux.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802582 newfstatat(AT_FDCWD, "/home/gbm26/courses/software/lib/x86_64", 0x7ffcc9951b20, 0) = -1 ENOENT (No such file or directory)
+2802582 openat(AT_FDCWD, "/home/gbm26/courses/software/lib/x86_64/libselinux.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802582 newfstatat(AT_FDCWD, "/home/gbm26/courses/software/lib/x86_64", 0x7ffcc9951b20, 0) = -1 ENOENT (No such file or directory)
+2802582 openat(AT_FDCWD, "/home/gbm26/courses/software/lib/libselinux.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802582 newfstatat(AT_FDCWD, "/home/gbm26/courses/software/lib", {st_mode=S_IFDIR|0755, st_size=6, ...}, 0) = 0
+2802582 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v3/libselinux.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802582 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v2/libselinux.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802582 openat(AT_FDCWD, "tls/x86_64/x86_64/libselinux.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802582 openat(AT_FDCWD, "tls/x86_64/libselinux.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802582 openat(AT_FDCWD, "tls/x86_64/libselinux.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802582 openat(AT_FDCWD, "tls/libselinux.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802582 openat(AT_FDCWD, "x86_64/x86_64/libselinux.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802582 openat(AT_FDCWD, "x86_64/libselinux.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802582 openat(AT_FDCWD, "x86_64/libselinux.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802582 openat(AT_FDCWD, "libselinux.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802582 openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+2802582 newfstatat(3, "", {st_mode=S_IFREG|0644, st_size=142868, ...}, AT_EMPTY_PATH) = 0
+2802582 mmap(NULL, 142868, PROT_READ, MAP_PRIVATE, 3, 0) = 0x7f4de1bbb000
+2802582 close(3)                        = 0
+2802582 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libselinux.so.1", O_RDONLY|O_CLOEXEC) = 3
+2802582 read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+2802582 newfstatat(3, "", {st_mode=S_IFREG|0644, st_size=166280, ...}, AT_EMPTY_PATH) = 0
+2802582 mmap(NULL, 177672, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7f4de1b8f000
+2802582 mprotect(0x7f4de1b95000, 139264, PROT_NONE) = 0
+2802582 mmap(0x7f4de1b95000, 106496, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x6000) = 0x7f4de1b95000
+2802582 mmap(0x7f4de1baf000, 28672, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x20000) = 0x7f4de1baf000
+2802582 mmap(0x7f4de1bb7000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x27000) = 0x7f4de1bb7000
+2802582 mmap(0x7f4de1bb9000, 5640, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x7f4de1bb9000
+2802582 close(3)                        = 0
+2802582 openat(AT_FDCWD, "/home/gbm26/courses/software/lib/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802582 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v3/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802582 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v2/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802582 openat(AT_FDCWD, "tls/x86_64/x86_64/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802582 openat(AT_FDCWD, "tls/x86_64/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802582 openat(AT_FDCWD, "tls/x86_64/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802582 openat(AT_FDCWD, "tls/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802582 openat(AT_FDCWD, "x86_64/x86_64/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802582 openat(AT_FDCWD, "x86_64/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802582 openat(AT_FDCWD, "x86_64/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802582 openat(AT_FDCWD, "libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802582 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+2802582 read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0P\237\2\0\0\0\0\0"..., 832) = 832
+2802582 pread64(3, "\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 784, 64) = 784
+2802582 pread64(3, "\4\0\0\0 \0\0\0\5\0\0\0GNU\0\2\0\0\300\4\0\0\0\3\0\0\0\0\0\0\0"..., 48, 848) = 48
+2802582 pread64(3, "\4\0\0\0\24\0\0\0\3\0\0\0GNU\0\t\\{\241H\256\312\201f\200\221\367\30\4px"..., 68, 896) = 68
+2802582 newfstatat(3, "", {st_mode=S_IFREG|0755, st_size=2220400, ...}, AT_EMPTY_PATH) = 0
+2802582 pread64(3, "\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 784, 64) = 784
+2802582 mmap(NULL, 2264656, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7f4de1966000
+2802582 mprotect(0x7f4de198e000, 2023424, PROT_NONE) = 0
+2802582 mmap(0x7f4de198e000, 1658880, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x28000) = 0x7f4de198e000
+2802582 mmap(0x7f4de1b23000, 360448, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1bd000) = 0x7f4de1b23000
+2802582 mmap(0x7f4de1b7c000, 24576, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x215000) = 0x7f4de1b7c000
+2802582 mmap(0x7f4de1b82000, 52816, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x7f4de1b82000
+2802582 close(3)                        = 0
+2802582 openat(AT_FDCWD, "/home/gbm26/courses/software/lib/libpcre2-8.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802582 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v3/libpcre2-8.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802582 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v2/libpcre2-8.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802582 openat(AT_FDCWD, "tls/x86_64/x86_64/libpcre2-8.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802582 openat(AT_FDCWD, "tls/x86_64/libpcre2-8.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802582 openat(AT_FDCWD, "tls/x86_64/libpcre2-8.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802582 openat(AT_FDCWD, "tls/libpcre2-8.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802582 openat(AT_FDCWD, "x86_64/x86_64/libpcre2-8.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802582 openat(AT_FDCWD, "x86_64/libpcre2-8.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802582 openat(AT_FDCWD, "x86_64/libpcre2-8.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802582 openat(AT_FDCWD, "libpcre2-8.so.0", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+2802582 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libpcre2-8.so.0", O_RDONLY|O_CLOEXEC) = 3
+2802582 read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+2802582 newfstatat(3, "", {st_mode=S_IFREG|0644, st_size=613064, ...}, AT_EMPTY_PATH) = 0
+2802582 mmap(NULL, 615184, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7f4de18cf000
+2802582 mmap(0x7f4de18d1000, 438272, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x2000) = 0x7f4de18d1000
+2802582 mmap(0x7f4de193c000, 163840, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x6d000) = 0x7f4de193c000
+2802582 mmap(0x7f4de1964000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x94000) = 0x7f4de1964000
+2802582 close(3)                        = 0
+2802582 mmap(NULL, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f4de18cc000
+2802582 arch_prctl(ARCH_SET_FS, 0x7f4de18cc800) = 0
+2802582 set_tid_address(0x7f4de18ccad0) = 2802582
+2802582 set_robust_list(0x7f4de18ccae0, 24) = 0
+2802582 rseq(0x7f4de18cd1a0, 0x20, 0, 0x53053053) = 0
+2802582 mprotect(0x7f4de1b7c000, 16384, PROT_READ) = 0
+2802582 mprotect(0x7f4de1964000, 4096, PROT_READ) = 0
+2802582 mprotect(0x7f4de1bb7000, 4096, PROT_READ) = 0
+2802582 mprotect(0x55adf6ae2000, 8192, PROT_READ) = 0
+2802582 mprotect(0x7f4de1c18000, 8192, PROT_READ) = 0
+2802582 prlimit64(0, RLIMIT_STACK, NULL, {rlim_cur=8192*1024, rlim_max=RLIM64_INFINITY}) = 0
+2802582 munmap(0x7f4de1bbb000, 142868)  = 0
+2802582 statfs("/sys/fs/selinux", 0x7ffcc9952940) = -1 ENOENT (No such file or directory)
+2802582 statfs("/selinux", 0x7ffcc9952940) = -1 ENOENT (No such file or directory)
+2802582 getrandom("\x80\xb6\xe3\x29\xcf\x8e\x9f\x1c", 8, GRND_NONBLOCK) = 8
+2802582 brk(NULL)                       = 0x55ae09edd000
+2802582 brk(0x55ae09efe000)             = 0x55ae09efe000
+2802582 openat(AT_FDCWD, "/proc/filesystems", O_RDONLY|O_CLOEXEC) = 3
+2802582 newfstatat(3, "", {st_mode=S_IFREG|0444, st_size=0, ...}, AT_EMPTY_PATH) = 0
+2802582 read(3, "nodev\tsysfs\nnodev\ttmpfs\nnodev\tbd"..., 1024) = 389
+2802582 read(3, "", 1024)               = 0
+2802582 close(3)                        = 0
+2802582 access("/etc/selinux/config", F_OK) = -1 ENOENT (No such file or directory)
+2802582 openat(AT_FDCWD, "/usr/lib/locale/locale-archive", O_RDONLY|O_CLOEXEC) = 3
+2802582 newfstatat(3, "", {st_mode=S_IFREG|0644, st_size=5712208, ...}, AT_EMPTY_PATH) = 0
+2802582 mmap(NULL, 5712208, PROT_READ, MAP_PRIVATE, 3, 0) = 0x7f4de1359000
+2802582 close(3)                        = 0
+2802582 ioctl(1, TCGETS, {B9600 opost isig icanon echo ...}) = 0
+2802582 ioctl(1, TIOCGWINSZ, {ws_row=46, ws_col=76, ws_xpixel=640, ws_ypixel=480}) = 0
+2802582 openat(AT_FDCWD, ".", O_RDONLY|O_NONBLOCK|O_CLOEXEC|O_DIRECTORY) = 3
+2802582 newfstatat(3, "", {st_mode=S_IFDIR|0711, st_size=23, ...}, AT_EMPTY_PATH) = 0
+2802582 getdents64(3, 0x55ae09ee39f0 /* 25 entries */, 65536) = 864
+2802582 getdents64(3, 0x55ae09ee39f0 /* 0 entries */, 65536) = 0
+2802582 close(3)                        = 0
+2802582 newfstatat(1, "", {st_mode=S_IFCHR|0620, st_rdev=makedev(0x88, 0x7), ...}, AT_EMPTY_PATH) = 0
+2802582 write(1, "bats\t   dshlib.h\t      strace-fo"..., 52) = 52
+2802582 write(1, "dragon.c   exit\t\t      strace-fo"..., 53) = 53
+2802582 write(1, "dsh\t   full_trace_ls.txt  trace_"..., 41) = 41
+2802582 write(1, "dsh_cli.c  ls\t\t      trace_ls.tx"..., 34) = 34
+2802582 write(1, "dshlib.c   makefile\t      trace_"..., 45) = 45
+2802582 write(1, "dshlib.c~  shell_roadmap.md\n", 28) = 28
+2802582 close(1)                        = 0
+2802582 close(2)                        = 0
+2802582 exit_group(0)                   = ?
+2802582 +++ exited with 0 +++
+2802581 <... wait4 resumed>[{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 2802582
+2802581 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=2802582, si_uid=1713862953, si_status=0, si_utime=0, si_stime=0} ---
+2802581 write(1, "dsh2> ", 6)           = 6
+2802581 read(0, "exit\n", 1024)         = 5
+2802581 write(1, "exiting...\n", 11)    = 11
+2802581 write(1, "cmd loop returned 0\n", 20) = 20
+2802581 exit_group(0)                   = ?
+2802581 +++ exited with 0 +++
