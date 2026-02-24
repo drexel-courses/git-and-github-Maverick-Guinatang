@@ -1,6 +1,6 @@
 # strace Fork/Exec Analysis – dsh2 (My Actual Run on tux)
 
-## 1. Learning Process (2 points)
+## 1. Learning Process
 
 I used ChatGPT to learn how to use `strace` to trace fork/exec behavior in my shell implementation.
 
@@ -23,7 +23,7 @@ At first I did not see the child process behavior clearly, but once I used `-f`,
 
 ---
 
-## 2. Basic Fork/Exec Analysis (3 points)
+## 2. Basic Fork/Exec Analysis
 
 ### A. Executing a Simple Command (`ls`)
 
@@ -153,7 +153,7 @@ Analysis:
 
 ---
 
-## 3. PATH Search Investigation (3 points)
+## 3. PATH Search Investigation
 
 To observe PATH searching in more detail, I ran:
 
@@ -182,7 +182,7 @@ This shows that `execvp()` searches through PATH directories in order until it f
 
 ---
 
-## 4. Parent/Child Verification (2 points)
+## 4. Parent/Child Verification
 
 From the traces:
 
