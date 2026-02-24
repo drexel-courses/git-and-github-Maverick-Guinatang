@@ -40,7 +40,7 @@ dsh2> ls
 dsh2> exit
 ```
 
-Relevant output from `trace_ls.txt`:
+Relevant output:
 
 ```text
 2802289 execve("./dsh", ["./dsh"], 0x7ffff26cd758 /* 26 vars */) = 0
@@ -83,7 +83,7 @@ dsh2> notacommand
 dsh2> exit
 ```
 
-Relevant output from `trace_notfound.txt`:
+Relevant output:
 
 ```text
 2802300 execve("./dsh", ["./dsh"], 0x7ffc79779fb8 /* 26 vars */) = 0
@@ -130,7 +130,7 @@ dsh2> echo "hello world"
 dsh2> exit
 ```
 
-Relevant output from `trace_echo.txt`:
+Relevant output:
 
 ```text
 2802548 execve("./dsh", ["./dsh"], 0x7ffc02b50708 /* 26 vars */) = 0
