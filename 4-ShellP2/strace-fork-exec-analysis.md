@@ -1,4 +1,4 @@
-# strace Fork/Exec Analysis – dsh2 (My Actual Run on tux)
+# strace Fork/Exec Analysis
 
 ## 1. Learning Process
 
